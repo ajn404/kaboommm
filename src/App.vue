@@ -5,19 +5,19 @@ import HelloWorld from '@/components/HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld msg="独立之思想，自由之精神" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/">序</RouterLink>
+        <RouterLink to="/zhuang/keyi">庄子·刻意</RouterLink>
       </nav>
     </div>
   </header>
 
-  <RouterView />
+<router-view></router-view>
+
 </template>
 
 <style>
