@@ -21,6 +21,19 @@ const router = createRouter({
           component:() => import('../views/zhuangzi/keyi.vue')
         }
       ]
+    },
+    {
+      path: '/flag',
+      name:'flag',
+      redirect:'/flag/cn',
+      component:() => import('../views/flag/cnFlag.vue'),
+      children:[
+        {
+          path:'/flag/cn',
+          name:'keyi',
+          component:() => import('../views/flag/cnFlag.vue')
+        }
+      ]
     }
 
   ]
