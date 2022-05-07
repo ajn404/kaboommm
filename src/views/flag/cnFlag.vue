@@ -9,7 +9,7 @@ import { nextTick } from "vue";
 nextTick(function () {
   class DrawingApp {
     private canvas: HTMLCanvasElement;
-    private context: CanvasRenderingContext2D;
+    private context: CanvasRenderingContext2D | null;
     private paint: boolean;
 
     private clickX: number[] = [];
@@ -26,9 +26,11 @@ nextTick(function () {
         context.strokeStyle = "white";
         context.lineWidth = 1;
 
-        this.canvas = canvas;
-        this.context = context;
+        
       }
+
+      this.canvas = canvas;
+      this.context = context;
 
       this.redraw();
       this.createUserEvents();
@@ -47,9 +49,9 @@ nextTick(function () {
       canvas.addEventListener("touchend", this.releaseEventHandler);
       canvas.addEventListener("touchcancel", this.cancelEventHandler);
 
-      document
-        .getElementById("clear")
-        .addEventListener("click", this.clearEventHandler);
+      let button:HTMLElement|null = document.getElementById("clear") 
+      if(button)
+      button.addEventListener("click", this.clearEventHandler);
     }
 
     private redraw() {
@@ -57,7 +59,8 @@ nextTick(function () {
       let context = this.context;
       let clickDrag = this.clickDrag;
       let clickY = this.clickY;
-      for (let i = 0; i < clickX.length; ++i) {
+      if(context){
+          for (let i = 0; i < clickX.length; ++i) {
         context.beginPath();
         if (clickDrag[i] && i) {
           context.moveTo(clickX[i - 1], clickY[i - 1]);
@@ -69,6 +72,8 @@ nextTick(function () {
         context.stroke();
       }
       context.closePath();
+      }
+      
     }
 
     private addClick(x: number, y: number, dragging: boolean) {
@@ -78,6 +83,7 @@ nextTick(function () {
     }
 
     private clearCanvas() {
+      if(this.context)
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.clickX = [];
       this.clickY = [];

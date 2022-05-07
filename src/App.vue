@@ -11,8 +11,7 @@ import HelloWorld from '@/components/HelloWorld.vue'
 
       <nav>
         <RouterLink to="/">序</RouterLink>
-        <RouterLink to="/zhuang/keyi">庄子·刻意</RouterLink>
-        <RouterLink to="/flag/cn">绘制二维码</RouterLink>
+        <RouterLink to="/zhuang">庄子·刻意</RouterLink>
       </nav>
     </div>
   </header>
